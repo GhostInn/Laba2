@@ -1,4 +1,3 @@
-// Определяем пространство имен для класса Regatta
 namespace lab2
 {
     // Определяем класс Regatta, который наследуется от класса List<Yacht>. Это означает, что класс Regatta
@@ -16,6 +15,11 @@ namespace lab2
         // в качестве параметра перечисление яхт
         public Regatta(IEnumerable<Yacht> yachts) : base(yachts)
         {
+            if (yachts == null)
+            {
+                throw new ArgumentNullException(nameof(yachts));
+            }
+            
         }
     }
 }

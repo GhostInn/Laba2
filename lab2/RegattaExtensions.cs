@@ -1,4 +1,3 @@
-// Определяем пространство имен для класса RegattaExtensions
 namespace lab2
 {
     // Определяем статический класс RegattaExtensions, который содержит методы расширения для класса Regatta
@@ -21,16 +20,23 @@ namespace lab2
         // к осадке для самого медленного корабля в экземпляре regatta
         public static double SlowestYachtSpeedToDraftRatio(this Regatta regatta)
         {
+            // Если переменная reggata равна null, то выводим сообщение об ошибке и выбрасываем исключение
+            
+            if (regatta == null)
+            {
+                throw new ArgumentNullException("null");
+            }
+            
             // Создаем переменную slowestYacht, которая содержит самый медленный корабль из экземпляра regatta.
             // Используем метод расширения MinBy для класса IEnumerable<T>
             var slowestYacht = regatta.MinBy(yacht => yacht.Speed);
 
-            // Если переменная slowestYacht равна null, то возвращаем 0
+            // Если переменная slowestYacht равна null, то выводим сообщение об ошибке и выбрасываем исключение
             if (slowestYacht == null)
             {
-                return 0;
+                throw new ArgumentNullException("null");
             }
-
+            
             // Вычисляем отношение скорости к осадке для самого медленного корабля и возвращаем его из метода
             return slowestYacht.Speed / slowestYacht.Draft;
         }
